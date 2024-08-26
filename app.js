@@ -27,7 +27,7 @@ app.use(cookieParser());
 // Configuration de CORS
 app.use(
   cors({
-    origin: "http://localhost:5173", // Modifiez cette ligne selon l'origine de votre frontend
+    origin: "https://expense-track-neon.vercel.app/", // Modifiez cette ligne selon l'origine de votre frontend
     credentials: true, // Permet l'envoi de cookies
     methods: ["GET", "POST", "PUT", "DELETE"], // Méthodes HTTP autorisées
     allowedHeaders: ["Content-Type", "Authorization"], // Headers autorisés
