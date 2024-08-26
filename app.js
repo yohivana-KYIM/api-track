@@ -8,7 +8,6 @@ import userRoutes from "./routes/userRoutes.js";
 import incomeRoutes from "./routes/incomeRoutes.js";
 import expenseRoutes from "./routes/expenseRoutes.js";
 import authenticateUser from "./middlewares/authenticateUser.js";
-import generateCookie from "./utils/generateCookie.js";
 
 // Configuration des variables d'environnement
 dotenv.config();
@@ -27,7 +26,7 @@ app.use(cookieParser());
 // Configuration de CORS
 app.use(
   cors({
-    origin: "https://expense-track-neon.vercel.app", // Modifiez cette ligne selon l'origine de votre frontend
+    origin: "https://expense-track-neon.vercel.app", // Remplacez par l'origine de votre frontend
     credentials: true, // Permet l'envoi de cookies
     methods: ["GET", "POST", "PUT", "DELETE"], // Méthodes HTTP autorisées
     allowedHeaders: ["Content-Type", "Authorization"], // Headers autorisés
@@ -38,8 +37,8 @@ app.use(
 app.use((req, res, next) => {
   res.cookie("session", req.cookies.session || "", {
     httpOnly: true, // Empêche les scripts d'accéder aux cookies
-    secure: false, // Définir sur true en production pour HTTPS
-    sameSite: "Lax", // Permet le cookie avec des requêtes cross-site de même site
+    secure: true, // Définir sur true en production pour HTTPS
+    sameSite: "None", // Utilisez 'None' pour les cookies cross-site en production
     maxAge: 30 * 24 * 60 * 60 * 1000, // 30 jours
   });
   next();
